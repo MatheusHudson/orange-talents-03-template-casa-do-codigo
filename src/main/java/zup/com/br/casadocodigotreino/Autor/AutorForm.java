@@ -7,6 +7,8 @@ import javax.validation.constraints.NotEmpty;
 
 import org.hibernate.validator.constraints.Length;
 
+import zup.com.br.casadocodigotreino.Validation.UniqueValue;
+
 public class AutorForm {
 
 	@NotEmpty
@@ -14,6 +16,7 @@ public class AutorForm {
 	
 	@Email
 	@NotEmpty
+	@UniqueValue(domainClass = Autor.class, fieldName = "email")
 	private String email;
 	
 	@NotEmpty

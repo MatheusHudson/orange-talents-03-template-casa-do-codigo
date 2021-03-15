@@ -1,13 +1,15 @@
 package zup.com.br.casadocodigotreino.Categoria;
 
-import javax.persistence.Column;
+
 
 import com.sun.istack.NotNull;
+
+import zup.com.br.casadocodigotreino.Validation.UniqueValue;
 
 public class CategoriaForm {
 	
 	@NotNull
-	@Column(unique = true)
+	@UniqueValue(domainClass = Categoria.class, fieldName = "nome")
 	private String nome;
 
 	public String getNome() {
