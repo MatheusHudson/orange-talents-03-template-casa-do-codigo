@@ -8,7 +8,6 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,7 +20,6 @@ import zup.com.br.casadocodigotreino.Validation.ProibeEmailDuplicadoAutorValidat
 
 @RestController
 @RequestMapping("/autores")
-@Validated
 public class AutorController {
 	
 	private ProibeEmailDuplicadoAutorValidator proibeEmailDuplicadoAutorValidator;
@@ -37,7 +35,6 @@ public class AutorController {
 
 	@InitBinder
 	public void init(WebDataBinder binder) {
-		System.out.println("entrou");
 		binder.addValidators(proibeEmailDuplicadoAutorValidator);
 	}
 
