@@ -55,7 +55,8 @@ public class Livro {
 		@NotNull
 		private Autor autor;
 		
-		@NotNull
+		@NotEmpty
+		@Column(unique = true)
 		private String isbn;
 		
 		@Deprecated

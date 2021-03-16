@@ -1,5 +1,6 @@
 package zup.com.br.casadocodigotreino.Autor;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
@@ -18,8 +19,10 @@ import org.hibernate.validator.constraints.Length;
 
 
 @Entity
-public class Autor {
-	
+public class Autor implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -44,11 +47,16 @@ public class Autor {
 		
 	}
 	
+	public Autor(Integer id) {
+		
+		this.id = id;
+	}
+	
 	public Autor(String nome) {
 		
 		this.nome = nome;
 	}
-	
+
 	public Autor( String nome, String email, String descricao) {
 		super();
 		this.nome = nome;
