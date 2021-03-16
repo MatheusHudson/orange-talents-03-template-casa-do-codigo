@@ -19,6 +19,8 @@ public class Categoria {
 		@Column(unique = true)
 		private String nome;
 		
+		
+		
 		@Deprecated
 		public Categoria( ) {
 			

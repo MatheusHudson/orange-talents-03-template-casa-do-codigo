@@ -6,5 +6,5 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface AutorRepository extends CrudRepository<Autor, Integer> {
 
-	Optional<Autor> findByEmail(String email);
+	Optional<Autor> findByNome(String nome);
 }

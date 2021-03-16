@@ -2,6 +2,7 @@ package zup.com.br.casadocodigotreino.Autor;
 
 import java.time.LocalDateTime;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,6 +13,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
+
+
 
 
 @Entity
@@ -35,10 +38,15 @@ public class Autor {
 	
 	@NotNull
 	private LocalDateTime instante = LocalDateTime.now();
-
-
-	public Autor() {
+	
+	@Deprecated
+	public Autor( ) {
 		
+	}
+	
+	public Autor(String nome) {
+		
+		this.nome = nome;
 	}
 	
 	public Autor( String nome, String email, String descricao) {
