@@ -138,14 +138,14 @@ public class LivroForm {
 		 if(autor == null) {
 			 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Por favor inserir um autor valido cadastrado no nosso banco de dados");
 		 }
-	     setAutor(autor);
+		 setAutor(autor);
 	
 		 Categoria categoria = manager.find(Categoria.class, this.categoria.getId());
 		 if(categoria == null) {
 			 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Por favor inserir uma categoria valida cadastrada no nosso banco de dados");
 		 }
 		 setCategoria(categoria);
-		
+		 
 		return new Livro(isbn, titulo, resumo, sumario, precoLivro, numeroDePaginas, dataLancamento, this.categoria , this.autor);
 	}
 	
