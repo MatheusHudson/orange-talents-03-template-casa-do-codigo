@@ -31,7 +31,10 @@ public class Estado {
 		
 	}
 
-
+	public Estado(Integer id) {
+		this.id = id;
+	}
+	
 	public Pais getPais() {
 		return pais;
 	}
