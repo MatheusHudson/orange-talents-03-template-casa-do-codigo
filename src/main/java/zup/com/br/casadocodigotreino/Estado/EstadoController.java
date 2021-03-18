@@ -22,7 +22,7 @@ public class EstadoController {
 	@Transactional
 	public ResponseEntity<EstadoForm> cadastrarEstado(@RequestBody @Valid EstadoForm form) {
 			
-		Estado estado = form.converter(manager);
+		Estado estado = form.toModel(manager);
 		manager.persist(estado);
 		
 		return ResponseEntity.ok(form);

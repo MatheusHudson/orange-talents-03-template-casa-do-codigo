@@ -42,7 +42,7 @@ public class AutorForm {
 	}
 
 
-	public Autor converter(AutorForm autor) {
+	public Autor toModel(AutorForm autor) {
 		
 		return new Autor(nome,email, descricao);
 	

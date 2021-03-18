@@ -17,13 +17,6 @@ public class ClienteService {
 		this.clienteRepository = clienteRepository;
 	}
 
-	public void salvarCliente(ClienteForm form) {
-
-		Cliente cliente = new Cliente(form);
-		isValidCliente(form);
-		clienteRepository.save(cliente);
-	}
-
 	public Boolean isValidCliente(ClienteForm form) {
 
 		Optional<Pais> pais = clienteRepository.findPaisById(form.getPais().getId());
@@ -31,18 +24,15 @@ public class ClienteService {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
 					"Insira um id de pais valido cadastrado no banco de dados");
 		}
-
-		Optional<?> list = clienteRepository.findStateCountryById(pais.get().getId());
-		if (list.isPresent()) {
-			
-			if (form.getEstado() != null)
-				list = clienteRepository.findStateCountryById(form.getEstado().getId(), pais.get().getId());
+			if (form.getEstado() == null) 
+				return true;
+			Optional<?> list = clienteRepository.findStateCountryById(form.getEstado().getId(), pais.get().getId());
 
 			if (list.isEmpty()) {
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
 						"Insira um id de estado valido cadastrado no banco de dado para este país");
 			}
-		}
+		
 
 		return true;
 	}

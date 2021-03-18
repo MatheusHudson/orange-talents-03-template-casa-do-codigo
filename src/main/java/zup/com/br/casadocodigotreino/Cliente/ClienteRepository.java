@@ -12,9 +12,6 @@ public interface ClienteRepository  extends CrudRepository<Cliente, Integer>{
 	@Query("Select p From Pais p Where p.id = :pId")
 	Optional<Pais> findPaisById(Integer pId);
 	
-	@Query("Select p From Pais p Where p.id = :id ")
-	Optional<?> findStateCountryById(Integer id);
-	
 	@Query("Select p From Pais p JOIN Estado e ON p.id = e.pais.id Where e.id = :idEstado AND p.id = :idPais")
 	Optional<?> findStateCountryById(Integer idEstado, Integer idPais);
 	

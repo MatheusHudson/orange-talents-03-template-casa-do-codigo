@@ -16,7 +16,7 @@ public class CategoriaForm {
 		return nome;
 	}
 
-	public Categoria converter() {
+	public Categoria toModel() {
 		
 		return new Categoria(nome);
 	}

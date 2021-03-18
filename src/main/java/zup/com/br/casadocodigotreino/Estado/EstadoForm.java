@@ -35,7 +35,7 @@ public class EstadoForm {
 
 
 
-	public Estado converter(EntityManager manager) {
+	public Estado toModel(EntityManager manager) {
 		
 		Pais pais = manager.find(Pais.class, this.pais.getId());
 		if(pais == null) {

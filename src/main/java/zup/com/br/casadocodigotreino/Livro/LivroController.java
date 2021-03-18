@@ -1,9 +1,8 @@
 package zup.com.br.casadocodigotreino.Livro;
 
-import java.net.URI;
+
 import java.util.List;
 import java.util.stream.Collectors;
-
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -15,10 +14,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
-import org.springframework.web.util.UriComponentsBuilder;
+
 
 
 
@@ -36,13 +34,11 @@ public class LivroController {
 	
 	@PostMapping
 	@Transactional
-	public ResponseEntity<LivroForm> cadastrarLivro(@RequestBody @Valid LivroForm form,UriComponentsBuilder uriBuilder ) {
+	public ResponseEntity<LivroForm> cadastrarLivro(@RequestBody @Valid LivroForm form) {
 		
 		Livro livro =  form.converter(manager);
 		manager.persist(livro);
 	
-		
-		URI uri = uriBuilder.path("/livros/{id}").buildAndExpand(livro.getId()).toUri();
 		return ResponseEntity.status(HttpStatus.OK).body(form);
 	}
 	
@@ -50,6 +46,7 @@ public class LivroController {
 	@Transactional
 	public ResponseEntity<List<LivroForm>> listarLivros() {
 		 
+	  @SuppressWarnings("unchecked")
 	  List<Livro> livros =  (List<Livro>) manager.createQuery("Select l From Livro l").getResultList();
 	  List<LivroForm> livrosForm =  livros.stream().map(LivroForm::new).collect(Collectors.toList());
 		

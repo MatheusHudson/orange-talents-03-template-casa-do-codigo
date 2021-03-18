@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 import zup.com.br.casadocodigotreino.Estado.Estado;
 import zup.com.br.casadocodigotreino.Pais.Pais;
-import zup.com.br.casadocodigotreino.Validation.UniqueValue;
+
 
 @Entity
 public class Cliente {

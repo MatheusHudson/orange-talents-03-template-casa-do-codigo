@@ -1,12 +1,11 @@
 package zup.com.br.casadocodigotreino.Cliente;
 
 
-import javax.persistence.EntityManager;
+
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
-
-
 import zup.com.br.casadocodigotreino.Estado.Estado;
 import zup.com.br.casadocodigotreino.Pais.Pais;
 import zup.com.br.casadocodigotreino.Validation.UniqueValue;
@@ -92,13 +91,10 @@ public class ClienteForm {
 		return cep;
 	}
 
-	public Cliente converter(EntityManager manager) {
-		
+	public Cliente toModel(@Valid ClienteForm form) {
 	
-		Cliente cliente = new Cliente(email, nome, sobrenome, cpfOuCnpj, endereco, complemento, cidade, pais, estado,
-				telefone, cep);
-		return cliente;
-
+		return new Cliente(form);
 	}
+
 
 }

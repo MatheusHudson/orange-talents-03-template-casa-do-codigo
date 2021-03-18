@@ -22,7 +22,7 @@ public class PaisController {
 	@Transactional
 	public ResponseEntity<PaisForm> cadastrarPais(@RequestBody @Valid PaisForm form) {
 		
-		Pais pais = form.converter(form);
+		Pais pais = form.toModel(form);
 		manager.persist(pais);
 		
 		return ResponseEntity.ok(form);

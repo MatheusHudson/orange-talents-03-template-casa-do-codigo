@@ -15,10 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ClienteController {
 	
 	private final ClienteService clienteService;
-
+	private final ClienteRepository clienteRepository;
 	 
-	public ClienteController(ClienteService clienteService) {
+	public ClienteController(ClienteService clienteService, ClienteRepository clienteRepository) {
 		this.clienteService = clienteService;
+		this.clienteRepository = clienteRepository;
 	}
 
 
@@ -27,7 +28,10 @@ public class ClienteController {
 	@Transactional
 	public ResponseEntity<ClienteForm> cadastrarCliente(@RequestBody @Valid ClienteForm form) {
 		
-		clienteService.salvarCliente(form);
+		clienteService.isValidCliente(form);
+		Cliente cliente = form.toModel(form);
+		clienteRepository.save(cliente);
+		
 		return ResponseEntity.ok(form);
 	}
 	

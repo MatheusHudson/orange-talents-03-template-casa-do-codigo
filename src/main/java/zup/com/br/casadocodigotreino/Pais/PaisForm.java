@@ -19,7 +19,7 @@ public class PaisForm {
 
 
 
-	public Pais converter(PaisForm form) {
+	public Pais toModel(PaisForm form) {
 		
 		return new Pais(nome);
 	}
