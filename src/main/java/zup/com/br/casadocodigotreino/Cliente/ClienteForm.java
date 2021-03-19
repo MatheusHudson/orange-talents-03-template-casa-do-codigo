@@ -2,14 +2,21 @@ package zup.com.br.casadocodigotreino.Cliente;
 
 
 
-import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
+
 import zup.com.br.casadocodigotreino.Estado.Estado;
 import zup.com.br.casadocodigotreino.Pais.Pais;
+import zup.com.br.casadocodigotreino.Validation.Cpf;
+import zup.com.br.casadocodigotreino.Validation.StateCountry;
 import zup.com.br.casadocodigotreino.Validation.UniqueValue;
 
+@Cpf
+@StateCountry
 public class ClienteForm {
 
 	@NotEmpty
@@ -22,10 +29,13 @@ public class ClienteForm {
 
 	@NotEmpty
 	private String sobrenome;
+	
+	@CPF
+	private String cpf;
 
-	@NotEmpty
-	@UniqueValue(domainClass = Cliente.class, fieldName = "cpfOuCnpj")
-	private String cpfOuCnpj;
+	@CNPJ
+	private String cnpj;
+	
 
 	@NotEmpty
 	private String endereco;
@@ -59,8 +69,14 @@ public class ClienteForm {
 		return sobrenome;
 	}
 
-	public String getCpfOuCnpj() {
-		return cpfOuCnpj;
+	
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public String getCnpj() {
+		return cnpj;
 	}
 
 	public String getEndereco() {
@@ -91,9 +107,10 @@ public class ClienteForm {
 		return cep;
 	}
 
-	public Cliente toModel(@Valid ClienteForm form) {
+	public Cliente toModel() {
+		
 	
-		return new Cliente(form);
+		return new Cliente(this);
 	}
 
 

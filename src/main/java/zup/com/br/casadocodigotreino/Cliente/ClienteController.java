@@ -14,11 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/clientes")
 public class ClienteController {
 	
-	private final ClienteService clienteService;
+
 	private final ClienteRepository clienteRepository;
 	 
-	public ClienteController(ClienteService clienteService, ClienteRepository clienteRepository) {
-		this.clienteService = clienteService;
+	public ClienteController(ClienteRepository clienteRepository) {
 		this.clienteRepository = clienteRepository;
 	}
 
@@ -28,8 +27,8 @@ public class ClienteController {
 	@Transactional
 	public ResponseEntity<ClienteForm> cadastrarCliente(@RequestBody @Valid ClienteForm form) {
 		
-		clienteService.isValidCliente(form);
-		Cliente cliente = form.toModel(form);
+	
+		Cliente cliente = form.toModel();
 		clienteRepository.save(cliente);
 		
 		return ResponseEntity.ok(form);

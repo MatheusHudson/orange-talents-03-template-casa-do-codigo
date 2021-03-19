@@ -9,6 +9,9 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
+
 import zup.com.br.casadocodigotreino.Estado.Estado;
 import zup.com.br.casadocodigotreino.Pais.Pais;
 
@@ -30,8 +33,13 @@ public class Cliente {
 	@NotEmpty
 	private String sobrenome;
 	
-	@NotEmpty
-	private String cpfOuCnpj;
+
+	@CPF
+	private String cpf;
+	
+
+	@CNPJ
+	private String cnpj;
 	
 	@NotEmpty
 	private String endereco;
@@ -67,7 +75,8 @@ public class Cliente {
 		this.email = form.getEmail();
 		this.nome = form.getNome();
 		this.sobrenome = form.getSobrenome();
-		this.cpfOuCnpj = form.getCpfOuCnpj();
+		this.cpf = form.getCpf();
+		this.cnpj = form.getCnpj();
 		this.endereco = form.getEndereco();
 		this.complemento = form.getComplemento();
 		this.cidade = form.getCidade();
